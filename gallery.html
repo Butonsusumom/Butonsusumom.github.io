@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+
+	
+	<link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="css/main.css">
+	<!-- 	<link rel="stylesheet" href="css/gallery.css">
+	<link rel="stylesheet" href="css/index.css">-->
+	<link rel="stylesheet" href="css/normalize.css" />
+<style>
+
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      color: #fff;
+      height: 100hv;
+
+    }
+
+    .slider {
+      position: relative;
+      overflow: hidden;
+
+    }
+
+    .slider__wrapper {
+      display: flex;
+
+    }
+
+    .slider__item {
+      flex: 0 0 100%;
+      max-width: 100%;
+
+    }
+
+    @media (min-width: 980px) {
+      .slider__item {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+    }
+
+    .slider__control {
+      position: absolute;
+      top: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      color: #fff;
+      text-align: center;
+      opacity: 0.5;
+      height: 50px;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, .5);
+    }
+
+    .slider__control:hover,
+    .slider__control:focus {
+      color: #fff;
+      text-decoration: none;
+      outline: 0;
+      opacity: .9;
+    }
+
+    .slider__control_left {
+      left: 0;
+    }
+
+    .slider__control_right {
+      right: 0;
+    }
+
+    .slider__control::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: transparent no-repeat center center;
+      background-size: 100% 100%;
+
+    }
+
+    .slider__control_left::before {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+    }
+
+    .slider__control_right::before {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+    }
+
+    .slider__item>img {
+      display: block;
+      height: 500px;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body link="white" vlink="white" alink="white">
+<body>
+	<!-- Landing section -->
+
+		<header>
+			<div class="title"></div>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="solarsystem.html">Solar System</a></li>
+				<li><a href="video.html">Video</a></li>
+				<li><a class="active" href="#">Gallery</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</header>
+		
+		<div style="text-align:center">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+   <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+</div>
+
+<!-- The four columns -->
+ <div class="slider">
+    <div class="slider__wrapper">
+      <a href="#" class="slider__item">
+        <img src="images/s1.jpg" alt="c1">
+      </a>
+      <a href="#" class="slider__item">
+        <img src="images/s2.jpg" alt="c2">
+      </a>
+      <a href="#" class="slider__item">
+        <img src="images/s3jpg.jpg" alt="c3">
+      </a>
+      <a href="#" class="slider__item">
+        <img src="images/s4.jpg" alt="c4">
+      </a>
+	  <a href="#" class="slider__item">
+        <img src="images/s5.jpg" alt="c5">
+      </a>
+	  <a href="#" class="slider__item">
+        <img src="images/s6.jpg" alt="c6">
+      </a>
+	  <a href="#" class="slider__item">
+        <img src="images/s7.jpg" alt="c7">
+      </a>
+	    <a href="#" class="slider__item">
+        <img src="images/s8.jpg" alt="c8">
+      </a>
+	    <a href="#" class="slider__item">
+        <img src="images/s9.jpg" alt="c9">
+      </a>
+    </div>
+    <a class="slider__control slider__control_left" href="#" role="button"></a>
+    <a class="slider__control slider__control_right" href="#" role="button"></a>
+  </div>
+
+  <script>
+     'use strict';
+    var multiItemSlider = (function () {
+
+      return function (selector, config) {
+        var
+          _mainElement = document.querySelector(selector), // основный элемент блока
+          _sliderWrapper = _mainElement.querySelector('.slider__wrapper'), // обертка для .slider-item
+          _sliderItems = _mainElement.querySelectorAll('.slider__item'), // элементы (.slider-item)
+          _sliderControls = _mainElement.querySelectorAll('.slider__control'), // элементы управления
+          _sliderControlLeft = _mainElement.querySelector('.slider__control_left'), // кнопка "LEFT"
+          _sliderControlRight = _mainElement.querySelector('.slider__control_right'), // кнопка "RIGHT"
+          _wrapperWidth = parseFloat(getComputedStyle(_sliderWrapper).width), // ширина обёртки
+          _itemWidth = parseFloat(getComputedStyle(_sliderItems[0]).width), // ширина одного элемента    
+          _positionLeftItem = 0, // позиция левого активного элемента
+          _transform = 0, // значение транфсофрмации .slider_wrapper
+          _step = _itemWidth / _wrapperWidth * 100, // величина шага (для трансформации)
+          _items = [], // массив элементов
+          _interval = 0,
+          _html = _mainElement.innerHTML,
+          _states = [
+            { active: false, minWidth: 0, count: 1 },
+            { active: false, minWidth: 980, count: 2 }
+          ],
+          _config = {
+            isCycling: false, // автоматическая смена слайдов
+            direction: 'right', // направление смены слайдов
+            interval: 5000, // интервал между автоматической сменой слайдов
+            pause: true // устанавливать ли паузу при поднесении курсора к слайдеру
+          };
+
+        for (var key in config) {
+          if (key in _config) {
+            _config[key] = config[key];
+          }
+        }
+
+        // наполнение массива _items
+        _sliderItems.forEach(function (item, index) {
+          _items.push({ item: item, position: index, transform: 0 });
+        });
+
+        var _setActive = function () {
+          var _index = 0;
+          var width = parseFloat(document.body.clientWidth);
+          _states.forEach(function (item, index, arr) {
+            _states[index].active = false;
+            if (width >= _states[index].minWidth)
+              _index = index;
+          });
+          _states[_index].active = true;
+        }
+
+        var _getActive = function () {
+          var _index;
+          _states.forEach(function (item, index, arr) {
+            if (_states[index].active) {
+              _index = index;
+            }
+          });
+          return _index;
+        }
+
+        var position = {
+          getItemMin: function () {
+            var indexItem = 0;
+            _items.forEach(function (item, index) {
+              if (item.position < _items[indexItem].position) {
+                indexItem = index;
+              }
+            });
+            return indexItem;
+          },
+          getItemMax: function () {
+            var indexItem = 0;
+            _items.forEach(function (item, index) {
+              if (item.position > _items[indexItem].position) {
+                indexItem = index;
+              }
+            });
+            return indexItem;
+          },
+          getMin: function () {
+            return _items[position.getItemMin()].position;
+          },
+          getMax: function () {
+            return _items[position.getItemMax()].position;
+          }
+        }
+
+        var _transformItem = function (direction) {
+          var nextItem;
+          if (direction === 'right') {
+            _positionLeftItem++;
+            if ((_positionLeftItem + _wrapperWidth / _itemWidth - 1) > position.getMax()) {
+              nextItem = position.getItemMin();
+              _items[nextItem].position = position.getMax() + 1;
+              _items[nextItem].transform += _items.length * 100;
+              _items[nextItem].item.style.transform = 'translateX(' + _items[nextItem].transform + '%)';
+            }
+            _transform -= _step;
+          }
+          if (direction === 'left') {
+            _positionLeftItem--;
+            if (_positionLeftItem < position.getMin()) {
+              nextItem = position.getItemMax();
+              _items[nextItem].position = position.getMin() - 1;
+              _items[nextItem].transform -= _items.length * 100;
+              _items[nextItem].item.style.transform = 'translateX(' + _items[nextItem].transform + '%)';
+            }
+            _transform += _step;
+          }
+          _sliderWrapper.style.transform = 'translateX(' + _transform + '%)';
+        }
+
+        var _cycle = function (direction) {
+          if (!_config.isCycling) {
+            return;
+          }
+          _interval = setInterval(function () {
+            _transformItem(direction);
+          }, _config.interval);
+        }
+
+        // обработчик события click для кнопок "назад" и "вперед"
+        var _controlClick = function (e) {
+          if (e.target.classList.contains('slider__control')) {
+            e.preventDefault();
+            var direction = e.target.classList.contains('slider__control_right') ? 'right' : 'left';
+            _transformItem(direction);
+            clearInterval(_interval);
+            _cycle(_config.direction);
+          }
+        };
+
+        var _refresh = function () {
+          clearInterval(_interval);
+          _mainElement.innerHTML = _html;
+          _sliderWrapper = _mainElement.querySelector('.slider__wrapper');
+          _sliderItems = _mainElement.querySelectorAll('.slider__item');
+          _sliderControls = _mainElement.querySelectorAll('.slider__control');
+          _sliderControlLeft = _mainElement.querySelector('.slider__control_left');
+          _sliderControlRight = _mainElement.querySelector('.slider__control_right');
+          _wrapperWidth = parseFloat(getComputedStyle(_sliderWrapper).width);
+          _itemWidth = parseFloat(getComputedStyle(_sliderItems[0]).width);
+          _positionLeftItem = 0;
+          _transform = 0;
+          _step = _itemWidth / _wrapperWidth * 100;
+          _items = [];
+          _sliderItems.forEach(function (item, index) {
+            _items.push({ item: item, position: index, transform: 0 });
+          });
+        }
+
+        var _setUpListeners = function () {
+          _mainElement.addEventListener('click', _controlClick);
+          if (_config.pause && _config.isCycling) {
+            _mainElement.addEventListener('mouseenter', function () {
+              clearInterval(_interval);
+            });
+            _mainElement.addEventListener('mouseleave', function () {
+              clearInterval(_interval);
+              _cycle(_config.direction);
+            });
+          }
+          window.addEventListener('resize', function () {
+            var
+              _index = 0,
+              width = parseFloat(document.body.clientWidth);
+            _states.forEach(function (item, index, arr) {
+              if (width >= _states[index].minWidth)
+                _index = index;
+            });
+            if (_index !== _getActive()) {
+              _setActive();
+              _refresh();
+            }
+          });
+        }
+
+        // инициализация
+        _setUpListeners();
+        if (document.visibilityState === "visible") {
+          _cycle(_config.direction);
+        }
+        _setActive();
+
+        return {
+          right: function () { // метод right
+            _transformItem('right');
+          },
+          left: function () { // метод left
+            _transformItem('left');
+          },
+          stop: function () { // метод stop
+            _config.isCycling = false;
+            clearInterval(_interval);
+          },
+          cycle: function () { // метод cycle 
+            _config.isCycling = true;
+            clearInterval(_interval);
+            _cycle();
+          }
+        }
+
+      }
+    }());
+
+    var slider = multiItemSlider('.slider', {
+      isCycling: true
+    })
+
+  </script>
+	
+<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+	<footer>
+			<p>&#169; 2020 <a href="https://www.instagram.com/orange_list/?hl=ru">KSENIA TSYBULKO</a></p>
+		</footer>
+</body>
+</html>
